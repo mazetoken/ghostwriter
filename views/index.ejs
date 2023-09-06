@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta X-Content-Type-Options="nosniff" />
+  <meta http-equiv="Content-Type" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>Ghostwriter Text-based NFTs</title>
+  <meta name="description" content="Ghostwriter Text-based NFTs on Bitcoin Cash">
+  <meta name="web" content="">
+  <link rel="icon" type="image/png" sizes="42x42" href="./img/ghostwriter.png">
+</head>
+<style>
+  body {
+    overflow-wrap: anywhere;
+    text-align: center;
+    margin: auto;
+    padding: 8px;
+    background-color: black;
+    color: wheat;
+    font-size: 18px;
+    font-family: Monospace;
+  }
+  a:link {
+    color: white;
+    background-color: transparent;
+    text-decoration: underline;
+  }
+  a:visited {
+    color: whitesmoke;
+    background-color: transparent;
+    text-decoration: underline;
+  }
+  p1 {
+    font-size: 14px;
+  }
+  footer {
+    font-size: 12px;
+  }
+  @media screen and (max-width: 512px) {}
+</style>
+</head>
+
+<h1>G H O S T W R I T E R</h1>
+<h2>Text-based NFTs</h2>
+<h3><i>on Bitcoin Cash</i></h3>
+<h3>&#8383;</h3>
+<p><img src="./img/ghostwriter.png" alt="Ghostwriter" width="400"></a>
+<p>write anything short<br>your text will be converted to hex and stored on-chain as nft commitment</p>
+<h3>mint Ghostwriter NFT<br> every 5 minutes</h3>
+<p>
+  name: GHOSTWRITER<br>
+  symbol: GHOSTWRITER
+<p>
+<p1>
+  TokenId:<br><a href="https://explorer.salemkode.com/token/b988d32664826bf77a5f77a3fdd6034477141c86a9a564040e4e33a4249f5af2">b988d32664826bf77a5f77a3fdd6034477141c86a9a564040e4e33a4249f5af2</a><br>
+</p1>
+<br>
+<p><i>minting cost is 2500 satoshi per 1 GHOSTWRITER NFT</i></p>
+<p>1. send 2500 satoshi here: bitcoincash:qq4kw0pwx6upd4czkzpl3jp8vnhw35x7msjtnaszds</p>
+<p><img src="./img/qrnft.png"></p>
+<p>2. paste your BCH address in the input field below,<br>
+  3. write something (e.g. a nice Haiku),<br>
+  4. click the mint button</p>
+<div>
+  <form action="/" method="post">
+    <input type="text" name="userAddress" size="56" placeholder="bitcoincash:z..."><br>
+    <input type="text" name="nftCommitment" size="56" placeholder="any short text (it will be converted to hex)"><br>
+    <br>
+    <input type="submit" value="Mint"><br>
+  </form>
+  <br>
+  <p1><%= content %></p1>
+  <p1><a href="https://explorer.salemkode.com/tx/<%= txIds %>"><%= txIds %></a></p1>
+  <p1><%= error %></p1>
+  <br>
+</div>
+<br>
+
+<footer>
+  <p><a href="https://t.me/mazetokens"><img src="./img/telegram.png" alt="TelegramIcon" width="42"></a></p>
+  <br>
+  <p>Maze Tokens Underworld, 2023</p>
+</footer>
+<br>
+
+<script src="./server.js" type="application/octet-stream"></script>
+
+</body>
+</html>
