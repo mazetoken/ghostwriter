@@ -5,7 +5,7 @@ import helmet from "helmet";
 import bodyParser from "body-parser";
 import rateLimit from "express-rate-limit";
 import requestIp from "request-ip";
-import { Config, Wallet, TokenMintRequest, NFTCapability, TokenSendRequest, SendRequest } from "mainnet-js";
+import { Config, Wallet, TokenMintRequest, NFTCapability, OpReturnData } from "mainnet-js";
 
 Config.EnforceCashTokenReceiptAddresses = true;
 Config.DefaultParentDerivationPath = "m/44'/145'/0'/0/0";
@@ -17,7 +17,7 @@ app.use(requestIp.mw());
 
 const apiLimiter = rateLimit({
     windowMs: 5 * 60 * 1000, // 5 minutes
-    max: 1,
+    max: 2,
     keyGenerator: function (req, res) {
         return req.clientIp
     },
@@ -46,9 +46,15 @@ app.post("/", apiLimiter, async function (req, res) {
     //console.log(encoded);
     let commitmentNft = encoded;
     if (nftCommitment =! req.body.nftCommitment) {
-        res.render("index", { content: null, txIds: null, image: null, error: "You need to write something short" });
+        res.render("index", { content: null, txIds: null, image: null, error: "You need to write something" });
         return; 
     }
+
+    //let message = req.body.opreturnmessage;
+    //let chunks = ["GHOST", message];
+    //let opreturnData = OpReturnData.fromArray(chunks);
+    //let opreturnData = OpReturnData.from(message);
+
     if (userAddress = req.body.userAddress, nftCommitment = req.body.nftCommitment) {
         try {
         const { txId } = await wallet.tokenMint(
@@ -58,10 +64,12 @@ app.post("/", apiLimiter, async function (req, res) {
                 cashaddr: userAddress,
                 commitment: commitmentNft,
                 capability: NFTCapability.none,
-                value: 800,
+                value: 800
             }),
-            ],
-        );
+            //opreturnData
+            ]
+        )
+
         res.render("index", {
             content: "Done. You minted the NFT",
             txIds: txId,
@@ -72,7 +80,7 @@ app.post("/", apiLimiter, async function (req, res) {
             res.render("index", {
                 content: null,
                 txIds: null,
-                error: "Not enough funds to mint NFT"
+                error: "Not enough funds to mint NFT or text is too long. Try again"
             }); 
         }
     }

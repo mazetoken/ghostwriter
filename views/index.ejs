@@ -18,7 +18,7 @@
     padding: 8px;
     background-color: black;
     color: wheat;
-    font-size: 18px;
+    font-size: 16px;
     font-family: Monospace;
   }
   a:link {
@@ -32,22 +32,21 @@
     text-decoration: underline;
   }
   p1 {
-    font-size: 14px;
+    font-size: 15x;
   }
   footer {
-    font-size: 12px;
+    font-size: 14px;
   }
   @media screen and (max-width: 512px) {}
 </style>
 </head>
 
-<h1>G H O S T W R I T E R</h1>
+<h1>GHOSTWRITER</h1>
 <h2>Text-based NFTs</h2>
 <h3><i>on Bitcoin Cash</i></h3>
-<h3>&#8383;</h3>
-<p><img src="./img/ghostwriter.png" alt="Ghostwriter" width="400"></a>
-<p>write anything short<br>your text will be converted to hex and stored on-chain as nft commitment</p>
-<h3>mint Ghostwriter NFT<br> every 5 minutes</h3>
+<!-- <h3>&#8383;</h3> -->
+<p><img src="./img/ghostwriter.png" alt="Ghostwriter" width="400"></a></p>
+<h3>mint 2 Ghostwriter NFTs<br> every 5 minutes</h3>
 <p>
   name: GHOSTWRITER<br>
   symbol: GHOSTWRITER
@@ -57,17 +56,19 @@
 </p1>
 <br>
 <p><i>minting cost is 2500 satoshi per 1 GHOSTWRITER NFT</i></p>
-<p>1. send 2500 satoshi here: bitcoincash:qq4kw0pwx6upd4czkzpl3jp8vnhw35x7msjtnaszds</p>
+<p>1. send 2500 satoshi to: bitcoincash:qq4kw0pwx6upd4czkzpl3jp8vnhw35x7msjtnaszds</p>
 <p><img src="./img/qrnft.png"></p>
-<p>2. paste your BCH address in the input field below,<br>
-  3. write something (e.g. a nice Haiku),<br>
+<p>2. paste your BCH CashTokens address in the input field below<br>
+  3. write something (it will be converted to hex and stored on-chain as nft commitment)<br>
+  <!-- 4. write something more (it will be stored on-chain in op_return)<br> -->
   4. click the mint button</p>
+<p><i>this is Ghostwriter alpha - you can mint NFT, but the page for viewing messages is not ready yet</i></p>
 <div>
   <form action="/" method="post">
-    <input type="text" name="userAddress" size="56" placeholder="bitcoincash:z..."><br>
-    <input type="text" name="nftCommitment" size="56" placeholder="any short text (it will be converted to hex)"><br>
-    <br>
-    <input type="submit" value="Mint"><br>
+    <p><input type="text" name="userAddress" size="56" placeholder="bitcoincash:z..."></p>
+    <p><input type="text" name="nftCommitment" size="56" placeholder="nft commitment - no more than 40 characters"></p>
+    <!-- <p><input type="text" name="opreturnmessage" size="56" placeholder="op_return - no more than 220 characters (optional)"></p> -->
+    <p><input type="submit" value="Mint"></p>
   </form>
   <br>
   <p1><%= content %></p1>
@@ -75,14 +76,12 @@
   <p1><%= error %></p1>
   <br>
 </div>
-<br>
 
 <footer>
   <p><a href="https://t.me/mazetokens"><img src="./img/telegram.png" alt="TelegramIcon" width="42"></a></p>
   <br>
   <p>Maze Tokens Underworld, 2023</p>
 </footer>
-<br>
 
 <script src="./server.js" type="application/octet-stream"></script>
 
