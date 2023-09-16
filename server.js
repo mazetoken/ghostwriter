@@ -6,6 +6,7 @@ import bodyParser from "body-parser";
 import rateLimit from "express-rate-limit";
 import requestIp from "request-ip";
 import { Config, Wallet, TokenMintRequest, NFTCapability, OpReturnData } from "mainnet-js";
+import { ElectrumClient } from "electrum-cash";
 
 Config.EnforceCashTokenReceiptAddresses = true;
 Config.DefaultParentDerivationPath = "m/44'/145'/0'/0/0";
@@ -17,7 +18,7 @@ app.use(requestIp.mw());
 
 const apiLimiter = rateLimit({
     windowMs: 5 * 60 * 1000, // 5 minutes
-    max: 2,
+    max: 5,
     keyGenerator: function (req, res) {
         return req.clientIp
     },
@@ -26,53 +27,87 @@ const apiLimiter = rateLimit({
 	legacyHeaders: false, // Disable the `X-RateLimit-*` headers
 });
 
+const electrum = new ElectrumClient(
+    "Rostrum 7.0",
+    "1.4.3",
+    "rostrum.nexa.ink",
+    50004,
+    "wss"
+  );
+  
+await electrum.connect();
+
 app.use(express.static("public"));
 app.use(express.json());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set("view engine", "ejs");
 
+const tokenId = "b988d32664826bf77a5f77a3fdd6034477141c86a9a564040e4e33a4249f5af2"; //Ghostwriter NFT
+const nftsList = await electrum.request("token.nft.list", tokenId);
+
 app.get("/", function (req, res) {
-    res.render("index", { content: null, txIds: null, image: null, error: null });
+    res.render("index", { content: null, txIds: null, commitments: null, error: null });
 });
+
+app.get("/api", function (req, res) {
+    res.send(nftsList.nft);
+  });
+
+//app.get("/api/:commitment", (req, res) => {
+//if (req.params.commitment) {
+    //const found = nfts.find((item) =>
+    //item.name.toLowerCase() === req.params.commitment.toLowerCase()
+    //);
+    //if (found) {
+    //res.send(found);
+    //} else {
+    //res.send("No commitment found.");
+    //}
+//}
+//});
 
 app.post("/", apiLimiter, async function (req, res) {
     const wif = process.env.WIF;
     const wallet = await Wallet.fromWIF(wif);
     let userAddress = req.body.userAddress;
-    const tokenId1 = "b988d32664826bf77a5f77a3fdd6034477141c86a9a564040e4e33a4249f5af2"; //Ghostwriter NFT
+    //const tokenId = "b988d32664826bf77a5f77a3fdd6034477141c86a9a564040e4e33a4249f5af2"; //Ghostwriter NFT
     let nftCommitment = req.body.nftCommitment;
     let encoded = Buffer.from(nftCommitment).toString("hex");
     //console.log(encoded);
     let commitmentNft = encoded;
     if (nftCommitment =! req.body.nftCommitment) {
-        res.render("index", { content: null, txIds: null, image: null, error: "You need to write something" });
+        res.render("index", { content: null, txIds: null, commitments: null, error: "You need to write something" });
         return; 
     }
 
-    //let message = req.body.opreturnmessage;
-    //let chunks = ["GHOST", message];
-    //let opreturnData = OpReturnData.fromArray(chunks);
-    //let opreturnData = OpReturnData.from(message);
+    let message = req.body.opreturnmessage;
+    let opmessage = Buffer.from(message).toString();
+    if (message =! req.body.opreturnmessage) {
+        res.render("index", { content: null, txIds: null, commitments: null, error: "You need to write something" });
+        return; 
+    }
+    let chunks = ["NFT", "Ghostwriter", commitmentNft, opmessage];
+    let opreturnData = OpReturnData.fromArray(chunks);
 
-    if (userAddress = req.body.userAddress, nftCommitment = req.body.nftCommitment) {
+    if (userAddress = req.body.userAddress, nftCommitment = req.body.nftCommitment, message = req.body.opreturnmessage) {
         try {
-        const { txId } = await wallet.tokenMint(
-            tokenId1,
+        let { txId } = await wallet.tokenMint(
+            tokenId,
             [
             new TokenMintRequest({
                 cashaddr: userAddress,
                 commitment: commitmentNft,
                 capability: NFTCapability.none,
-                value: 800
-            }),
-            //opreturnData
-            ]
-        )
-
+                value: 800,
+            })
+            ],
+            await wallet.send([ opreturnData ])
+        );
         res.render("index", {
-            content: "Done. You minted the NFT",
+            content: "Done. You minted GHOSTWRITER NFT",
             txIds: txId,
+            commitments: null,
             error: null
         }); 
         } catch (e) {
@@ -80,11 +115,26 @@ app.post("/", apiLimiter, async function (req, res) {
             res.render("index", {
                 content: null,
                 txIds: null,
-                error: "Not enough funds to mint NFT or text is too long. Try again"
+                commitments: null,
+                error: "Not enough funds to mint NFT or commitment/message is too long. Try again"
             }); 
         }
     }
 });
+
+//app.get("/view", async function (req, res) {
+    //const apiUrl = "https://ghostwriter.onrender.com/api";
+    //fetch(apiUrl)
+        //.then(response => response.json())
+        //.then(data => console.log(data.nft));
+
+    //res.render("index", {
+        //content: null,
+        //txIds: null,
+        //commitments: data.nft,
+        //error: null
+    //}); 
+//});
 
 app.listen(process.env.PORT, () => {
     console.log("Server listening on port " + process.env.PORT + "!");
