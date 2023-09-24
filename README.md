@@ -2,4 +2,4 @@
 
 Text-based NFTs on Bitcoin Cash
 
-https://ghostwriter.cyclic.cloud
+https://ghostwriter.onrender.com

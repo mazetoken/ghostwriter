@@ -24,35 +24,35 @@
                   "name": "GHOSTWRITER",
                   "description": "ghostwriter",
                   "uris": {
-                    "icon": "https://ghostwriter.cyclic.cloud/public/nft/1.png"
+                    "icon": "https://ghostwriter.onrender.com/public/nft/1.png"
                   }
                 },
                 "47686f7374777269746572": {
                   "name": "GHOSTWRITER",
                   "description": "Ghostwriter",
                   "uris": {
-                    "icon": "https://ghostwriter.cyclic.cloud/public/nft/1.png"
+                    "icon": "https://ghostwriter.onrender.com/public/nft/1.png"
                   }
                 },
                 "70726976617465206b657973206d6174746572": {
                   "name": "GHOSTWRITER",
                   "description": "private keys matter",
                   "uris": {
-                    "icon": "https://ghostwriter.cyclic.cloud/public/nft/2.png"
+                    "icon": "https://ghostwriter.onrender.com/public/nft/2.png"
                   }
                 },
                 "50726976617465206b657973206d6174746572": {
                   "name": "GHOSTWRITER",
                   "description": "Private keys matter",
                   "uris": {
-                    "icon": "https://ghostwriter.cyclic.cloud/public/nft/2.png"
+                    "icon": "https://ghostwriter.onrender.com/public/nft/2.png"
                   }
                 },
                 "50726976617465204b657973204d6174746572": {
                   "name": "GHOSTWRITER",
                   "description": "Private Keys Matter",
                   "uris": {
-                    "icon": "https://ghostwriter.cyclic.cloud/public/nft/2.png"
+                    "icon": "https://ghostwriter.onrender.com/public/nft/2.png"
                   }
                 }
               }
@@ -61,9 +61,9 @@
         },
         "uris": {
           "icon": "ipfs://bafkreigv4lbc7euwcsmlmvp2r5nizwwppzqgoejps4rykbvqjwgl5ceq4q/",
-          "web": "https://ghostwriter.cyclic.cloud",
+          "web": "https://ghostwriter.onrender.com",
           "telegram": "https://t.me/mazetokens",
-          "registry": "https://ghostwriter.cyclic.cloud/public/bcmr/bcmr.json"
+          "registry": "https://ghostwriter.onrender.com/public/bcmr/bcmr.json"
         }
       }
     }
