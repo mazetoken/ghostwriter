@@ -17,7 +17,7 @@ app.use(requestIp.mw());
 
 const apiLimiter = rateLimit({
     windowMs: 5 * 60 * 1000, // 5 minutes
-    max: 5,
+    max: 2,
     keyGenerator: function (req, res) {
         return req.clientIp
     },
@@ -80,14 +80,14 @@ app.post("/", apiLimiter, async function (req, res) {
     //console.log(encoded);
     let commitmentNft = encoded;
     if (nftCommitment =! req.body.nftCommitment) {
-        res.render("index", { content: null, txIds: null, commitments: null, error: "You need to write something" });
+        res.render("index", { content: null, txIds: null, commitments: null, error: "You need to write something. Commitment can`t be empty." });
         return; 
     }
 
     let message = req.body.opreturnmessage;
     let opmessage = Buffer.from(message).toString();
     if (message =! req.body.opreturnmessage) {
-        res.render("index", { content: null, txIds: null, commitments: null, error: "You need to write something" });
+        res.render("index", { content: null, txIds: null, commitments: null, error: "You need to write something. Op_return can`t be empty." });
         return; 
     }
     let chunks = ["NFT", "Ghostwriter", commitmentNft, opmessage];
