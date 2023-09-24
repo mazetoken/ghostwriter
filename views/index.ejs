@@ -2,8 +2,6 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta X-Content-Type-Options="nosniff" />
-  <meta http-equiv="Content-Type" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<title>Ghostwriter Text-based NFTs</title>
   <meta name="description" content="Ghostwriter Text-based NFTs on Bitcoin Cash">
@@ -13,9 +11,9 @@
 <style>
   body {
     overflow-wrap: anywhere;
+    max-width: 800px;
     text-align: center;
     margin: auto;
-    padding: 8px;
     background-color: black;
     color: whitesmoke;
     font-size: 16px;
@@ -31,13 +29,28 @@
     background-color: transparent;
     text-decoration: underline;
   }
+  .button {
+			background-color: #212121;
+			border: none;
+			border-radius: 12px;
+			color: #ffffff;
+			cursor: pointer;
+			display: inline-block;
+			font-family: Monospace;
+			font-size: 16px;
+			margin: 4px 2px;
+			padding: 20px;
+			text-align: center;
+			text-decoration: none;
+			width: 12%;
+	}
   p1 {
     font-size: 15x;
   }
   footer {
     font-size: 14px;
   }
-  @media screen and (max-width: 512px) {}
+  @media screen and (max-width: 600px) {}
 </style>
 </head>
 
@@ -63,13 +76,13 @@
   3. write something (it will be converted to hex and stored on-chain as nft commitment)<br>
   4. write something more (it will be stored on-chain in op_return)<br>
   5. click the mint button</p>
-<p><i>this is Ghostwriter alpha - you can mint NFT, but the page for viewing messages is not ready yet</i></p>
+<br>
 <div>
   <form action="/" method="post">
     <p><input type="text" name="userAddress" size="56" placeholder="bitcoincash:z..."></p>
     <p><input type="text" name="nftCommitment" size="56" placeholder="nft commitment - no more than 40 characters (required)"></p>
     <p><input type="text" name="opreturnmessage" size="56" placeholder="op_return message - no more than 200 characters (required)"></p>
-    <p><input type="submit" value="Mint"></p>
+    <p><input type="submit" class="button" value="Mint"></p>
   </form>
   <br>
   <p1><%= content %></p1>
@@ -78,19 +91,14 @@
   <br>
 </div>
 
-<!-- <div>
-  <p>Ghostwriter NFT commitment list</p>
-  <form action="/view" method="post">
-    <p><input type="submit" value="View"></p>
-  </form>
-  <br>
-  <p1><%= commitments %></p1>
-</div> -->
-
+<p><i>this is Ghostwriter alpha - you can mint NFT, but the page for viewing messages is not ready yet</i></p>
+<p>Ghostwriter <a href="https://ghostwriter.cyclic.cloud/api">commitments api</a></p>
+<p>Ghostwriter <a href="https://ghostwriter.cyclic.cloud/tx">address tx history</a></p>
+<br>
 <footer>
-  <p><a href="https://t.me/mazetokens"><img src="./img/telegram.png" alt="TelegramIcon" width="42"></a></p>
+  <p><a href="https://microfi.eu"><img src="./img/microfi_icon.png" alt="Microfi_icon" width="42"></a> <a href="https://t.me/mazetokens"><img src="./img/telegram.png" alt="TelegramIcon" width="42"></a> <a href="https://github.com/mazetoken/ghostwriter"><img src="./img/githubwhite.png" alt="Github" width="42" height="40"></a></p>
   <br>
-  <p>Maze Tokens Underworld, 2023</p>
+  <p>Mircrofi Free Flow Project Ecosystem, 2023</p>
 </footer>
 
 <script src="./server.js" type="application/octet-stream"></script>

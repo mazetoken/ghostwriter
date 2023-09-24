@@ -1,12 +1,11 @@
 import * as dotenv from "dotenv";
 dotenv.config();
+import { ElectrumClient } from "electrum-cash";
 import express from "express";
-import helmet from "helmet";
-import bodyParser from "body-parser";
 import rateLimit from "express-rate-limit";
+import helmet from "helmet";
 import requestIp from "request-ip";
 import { Config, Wallet, TokenMintRequest, NFTCapability, OpReturnData } from "mainnet-js";
-import { ElectrumClient } from "electrum-cash";
 
 Config.EnforceCashTokenReceiptAddresses = true;
 Config.DefaultParentDerivationPath = "m/44'/145'/0'/0/0";
@@ -39,12 +38,13 @@ await electrum.connect();
 
 app.use(express.static("public"));
 app.use(express.json());
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: true }));
 app.set("view engine", "ejs");
 
 const tokenId = "b988d32664826bf77a5f77a3fdd6034477141c86a9a564040e4e33a4249f5af2"; //Ghostwriter NFT
 const nftsList = await electrum.request("token.nft.list", tokenId);
+const ghostwriterAddress = "bitcoincash:qq4kw0pwx6upd4czkzpl3jp8vnhw35x7msjtnaszds";
+const history = await electrum.request("blockchain.address.get_history", ghostwriterAddress);
 
 app.get("/", function (req, res) {
     res.render("index", { content: null, txIds: null, commitments: null, error: null });
@@ -52,7 +52,11 @@ app.get("/", function (req, res) {
 
 app.get("/api", function (req, res) {
     res.send(nftsList.nft);
-  });
+});
+
+app.get("/tx", function (req, res) {
+    res.send(history);
+});
 
 //app.get("/api/:commitment", (req, res) => {
 //if (req.params.commitment) {
@@ -71,7 +75,6 @@ app.post("/", apiLimiter, async function (req, res) {
     const wif = process.env.WIF;
     const wallet = await Wallet.fromWIF(wif);
     let userAddress = req.body.userAddress;
-    //const tokenId = "b988d32664826bf77a5f77a3fdd6034477141c86a9a564040e4e33a4249f5af2"; //Ghostwriter NFT
     let nftCommitment = req.body.nftCommitment;
     let encoded = Buffer.from(nftCommitment).toString("hex");
     //console.log(encoded);
@@ -121,20 +124,6 @@ app.post("/", apiLimiter, async function (req, res) {
         }
     }
 });
-
-//app.get("/view", async function (req, res) {
-    //const apiUrl = "https://ghostwriter.onrender.com/api";
-    //fetch(apiUrl)
-        //.then(response => response.json())
-        //.then(data => console.log(data.nft));
-
-    //res.render("index", {
-        //content: null,
-        //txIds: null,
-        //commitments: data.nft,
-        //error: null
-    //}); 
-//});
 
 app.listen(process.env.PORT, () => {
     console.log("Server listening on port " + process.env.PORT + "!");
