@@ -11,7 +11,7 @@
 <style>
   body {
     overflow-wrap: anywhere;
-    max-width: 800px;
+    max-width: 1000px;
     text-align: center;
     margin: auto;
     background-color: black;
@@ -57,16 +57,18 @@
 <p><i>minting cost is 2500 satoshi per 1 GHOSTWRITER NFT</i></p>
 <p>1. send 2500 satoshi to: bitcoincash:qq4kw0pwx6upd4czkzpl3jp8vnhw35x7msjtnaszds</p>
 <p><img src="./img/qrnft.png"></p>
-<p>2. paste your BCH CashTokens address in the input field below<br>
+<p>
+  2. paste your BCH CashTokens address in the input field below<br>
   3. write something (it will be converted to hex and stored on-chain as nft commitment)<br>
   4. write something more (it will be stored on-chain in op_return)<br>
-  5. click the mint button</p>
+  5. click the mint button
+</p>
 <br>
 <div>
   <form action="/" method="post">
     <p><input type="text" name="userAddress" size="56" placeholder="bitcoincash:z..."></p>
-    <p><input type="text" name="nftCommitment" size="56" placeholder="nft commitment - no more than 40 characters (required)"></p>
-    <p><input type="text" name="opreturnmessage" size="56" placeholder="op_return message - no more than 200 characters (required)"></p>
+    <p><input type="text" name="nftCommitment" size="56" placeholder="text (nft commitment) - no more than 40 characters (required)"></p>
+    <p><input type="text" name="opreturnmessage" size="56" placeholder="text (op_return) - no more than 200 characters (required)"></p>
     <p><input type="submit" value="Mint"></p>
   </form>
   <br>
@@ -76,22 +78,29 @@
   <br>
 </div>
 
-<p><i>this is Ghostwriter alpha - you can mint NFT, but the page for viewing messages is not ready yet</i></p>
-<p>there are currently four images for GHOSTWRITER NFT. If you write, as an NFT commitment: ghostwriter, Ghostwriter, ghostwriter nft or private keys matter, you will get NFT image</p>
+<p><i>Ghostwriter is under development<br>you can mint NFT, but the page for viewing messages is not ready yet</i></p>
+<p>there are currently four images for GHOSTWRITER NFT:</p>
+<p>
+  <img src="./img/1.png" alt="ghostwriter" width="200"><br>ghostwriter<br>(the main image and category icon)<br>
+  <img src="./img/2.png" alt="Ghostwriter" width="200"><br>Ghostwriter<br>
+  <img src="./img/3.png" alt="ghostwriter nft" width="200"><br>Ghostwriter Nft<br>
+  <img src="./img/4.png" alt="pkm" width="200"><br>Private Keys Matter
+</p>
+<p>mint one of these nfts with images by using:<br>ghostwriter, Ghostwriter, Ghostwriter Nft or Private Keys Matter as text (nft commitment)</p>
 <p>Ghostwriter <a href="https://ghostwriter.onrender.com/api">commitments api</a></p>
 <p>Ghostwriter <a href="https://ghostwriter.onrender.com/tx">address tx history</a></p>
 <br>
+<p>To support Microfi apps, consider donating a small amount of BCH to:</p>
+  <p>bitcoincash:qr8j9fzlmsdfy52n37pg2frqaddsjs99qyat9nwf88<br><br>
+  <img src="./img/qrcode2.png" alt="qr2" width="200"><br>
+</p>
+<br><br>
 <footer>
-  <p>To support Microfi apps, consider donating a small amount of BCH to:</p>
-    <p>bitcoincash:qr8j9fzlmsdfy52n37pg2frqaddsjs99qyat9nwf88<br><br>
-      <img src="./img/qrcode2.png" alt="qr2" width="200"><br>
-  </p>
-  <p><a href="https://microfi.eu"><img src="./img/microfi_icon.png" alt="Microfi_icon" width="42"></a> <a href="https://t.me/mazetokens"><img src="./img/telegram.png" alt="TelegramIcon" width="42"></a> <a href="https://github.com/mazetoken/ghostwriter"><img src="./img/githubwhite.png" alt="Github" width="42" height="40"></a></p>
+  <p><a href="https://microfi.eu"><img src="./img/microfi_icon.png" alt="Microfi_icon" width="36"></a> <a href="https://github.com/mazetoken/ghostwriter"><img src="./img/githubwhite.png" alt="Github" width="36"></a> <a href="https://t.me/mazetokens"><img src="./img/telegram.png" alt="Telegram" width="36"></a></p>
   <br>
   <p>Mircrofi Free Flow Project Ecosystem, 2023</p>
 </footer>
-
+<br>
 <script src="./server.js" type="application/octet-stream"></script>
-
 </body>
 </html>

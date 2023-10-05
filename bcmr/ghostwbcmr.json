@@ -1,0 +1,90 @@
+{
+  "$schema": "https://cashtokens.org/bcmr-v2.schema.json",
+  "version": { "major": 0, "minor": 1, "patch": 0 },
+  "latestRevision": "2023-09-24T14:45:00.007Z",
+  "registryIdentity": {
+    "name": "Ghostwriter BCMR",
+    "description": "Ghostwriter CashTokens Bitcoin-Cash-Metadata-Registry"
+  },
+  "identities": {
+    "b988d32664826bf77a5f77a3fdd6034477141c86a9a564040e4e33a4249f5af2": {
+      "2023-09-24T14:45:00.007Z": {
+        "name": "GHOSTWRITER",
+        "description": "Ghostwriter Text-based NFTs",
+        "token": {
+          "category": "b988d32664826bf77a5f77a3fdd6034477141c86a9a564040e4e33a4249f5af2",
+          "symbol": "GHOSTWRITER",
+          "nfts": {
+            "description": "Ghostwriter Text-based NFTs",
+            "parse": {
+              "bytecode": "00d2",
+              "types": {
+                "67686F7374777269746572": {
+                  "name": "GHOSTWRITER",
+                  "description": "ghostwriter",
+                  "uris": {
+                    "icon": "ipfs://bafybeidlphn2nllaw66yjraei7hkbvnd3ywtjv45jewcykm377rr4gad6q/1.png"
+                  }
+                },
+                "47686f7374777269746572": {
+                  "name": "GHOSTWRITER",
+                  "description": "Ghostwriter",
+                  "uris": {
+                    "icon": "ipfs://bafybeidlphn2nllaw66yjraei7hkbvnd3ywtjv45jewcykm377rr4gad6q/2.png"
+                  }
+                },
+                "67686f7374777269746572206e6674": {
+                  "name": "GHOSTWRITER",
+                  "description": "ghostwriter nft",
+                  "uris": {
+                    "icon": "ipfs://bafybeidlphn2nllaw66yjraei7hkbvnd3ywtjv45jewcykm377rr4gad6q/3.png"
+                  }
+                },
+                "47686f7374777269746572206e6674": {
+                  "name": "GHOSTWRITER",
+                  "description": "Ghostwriter nft",
+                  "uris": {
+                    "icon": "ipfs://bafybeidlphn2nllaw66yjraei7hkbvnd3ywtjv45jewcykm377rr4gad6q/3.png"
+                  }
+                },
+                "47686f7374777269746572204e6674": {
+                  "name": "GHOSTWRITER",
+                  "description": "Ghostwriter Nft",
+                  "uris": {
+                    "icon": "ipfs://bafybeidlphn2nllaw66yjraei7hkbvnd3ywtjv45jewcykm377rr4gad6q/3.png"
+                  }
+                },
+                "70726976617465206b657973206d6174746572": {
+                  "name": "GHOSTWRITER",
+                  "description": "private keys matter",
+                  "uris": {
+                    "icon": "ipfs://bafybeidlphn2nllaw66yjraei7hkbvnd3ywtjv45jewcykm377rr4gad6q/4.png"
+                  }
+                },
+                "50726976617465206b657973206d6174746572": {
+                  "name": "GHOSTWRITER",
+                  "description": "Private keys matter",
+                  "uris": {
+                    "icon": "ipfs://bafybeidlphn2nllaw66yjraei7hkbvnd3ywtjv45jewcykm377rr4gad6q/4.png"
+                  }
+                },
+                "50726976617465204b657973204d6174746572": {
+                  "name": "GHOSTWRITER",
+                  "description": "Private Keys Matter",
+                  "uris": {
+                    "icon": "ipfs://bafybeidlphn2nllaw66yjraei7hkbvnd3ywtjv45jewcykm377rr4gad6q/4.png"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "uris": {
+          "icon": "ipfs://bafkreigv4lbc7euwcsmlmvp2r5nizwwppzqgoejps4rykbvqjwgl5ceq4q/",
+          "web": "https://ghostwriter.onrender.com",
+          "telegram": "https://t.me/mazetokens"
+        }
+      }
+    }
+  }
+}
